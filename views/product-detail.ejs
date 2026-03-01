@@ -1,0 +1,94 @@
+<%- include('partials/header') %> 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div style="background-color: #F7F8FA; padding: 20px 0; font-family: 'Inter', sans-serif;">
+    <div style="max-width: 90%; margin: 0 auto;">
+        
+        <nav style="margin-bottom: 20px; color: #8B96A5; font-size: 16px; display: flex; gap: 8px; align-items: center;">
+            <span>Home</span> <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
+            <span><%= product.category %></span> <i class="fas fa-chevron-right" style="font-size: 12px;"></i>
+            <span style="color: #505050;"><%= product.title %></span>
+        </nav>
+
+        <div style="background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; display: flex; padding: 20px; gap: 20px; margin-bottom: 20px; align-items: flex-start;">
+            
+            <div style="width: 380px; flex-shrink: 0;">
+                <div style="border: 1px solid #E3E8EE; border-radius: 6px; padding: 20px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; height: 380px;">
+                    <img src="<%= product.image %>" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='/tech/1.jpg'">
+                </div>
+            </div>
+
+            <div style="flex: 1; padding: 0 10px;">
+                <div style="color: #00B517; font-size: 16px; margin-bottom: 8px;"><i class="fas fa-check"></i> In stock</div>
+                <h2 style="font-size: 20px; font-weight: 600; color: #1C1C1C; margin-bottom: 12px; line-height: 1.4;"><%= product.title %></h2>
+                
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <span style="color: #FF9017;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star" style="color:#D1D1D1"></i> 9.3</span>
+                    <span style="color: #D1D1D1;">•</span>
+                    <span style="color: #8B96A5;"><i class="fas fa-comment"></i> 32 reviews</span>
+                </div>
+
+                <div style="background: #FFF0DF; display: flex; margin-bottom: 20px;">
+                    <div style="padding: 15px 25px; border-right: 1px solid #BDC1C8;">
+                        <div style="color: #FA3434; font-weight: 600; font-size: 18px;">$<%= product.price %></div>
+                        <div style="font-size: 13px;">Retail Price</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 15px; color: #505050;">
+                    <span style="color: #8B96A5;">Category:</span> <span><%= product.category %></span>
+                    <span style="color: #8B96A5;">Warranty:</span> <span>2 years full warranty</span>
+                    <span style="color: #8B96A5;">ID:</span> <span><%= product._id %></span>
+                </div>
+            </div>
+
+            <div style="width: 280px; flex-shrink: 0;">
+                <div style="border: 1px solid #E3E8EE; border-radius: 6px; padding: 20px;">
+                    <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                        <div style="width: 48px; height: 48px; background: #C7F1FF; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #4CAAD2; font-weight: bold;">S</div>
+                        <div>Supplier<br><strong>Official Store</strong></div>
+                    </div>
+                    <form action="/add-to-cart" method="POST">
+                        <input type="hidden" name="productId" value="<%= product._id %>">
+                        <button type="submit" style="width: 100%; background: #0D6EFD; color: #fff; border: none; padding: 12px; border-radius: 6px; cursor: pointer;">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; padding: 25px; margin-bottom: 20px;">
+            <h3 style="border-bottom: 2px solid #0D6EFD; display: inline-block; padding-bottom: 5px; margin-bottom: 20px;">Description</h3>
+            <p style="color: #505050; line-height: 1.6;"><%= product.description %></p>
+        </div>
+
+       <div style="background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; padding: 25px; margin-bottom: 20px;">
+    <h3 style="font-size: 18px; font-weight: 600; color: #1C1C1C; margin-bottom: 20px;">Related products</h3>
+    <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px;">
+        <% related.forEach(function(item) { %>
+            <a href="/product-detail?id=<%= item._id %>" style="text-decoration: none; color: inherit; cursor: pointer;">
+                <div>
+                    <div style="background: #EEEEEE; border-radius: 6px; aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; padding: 10px;">
+                        <img src="<%= item.image %>" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='/tech/1.jpg'">
+                    </div>
+                    <div style="font-size: 13px; color: #505050; line-height: 1.4; height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
+                        <%= item.title %>
+                    </div>
+                    <div style="font-size: 14px; color: #1C1C1C; font-weight: 600; margin-top: 5px;">$<%= item.price %></div>
+                </div>
+            </a>
+        <% }) %>
+    </div>
+</div>
+
+        <div style="background: #237CFF; border-radius: 8px; padding: 28px 30px; display: flex; justify-content: space-between; align-items: center; color: #fff; margin-bottom: 40px;">
+            <div>
+                <h3 style="margin: 0; font-size: 24px; font-weight: 600;">Super discount on orders over $100</h3>
+                <p style="margin: 5px 0 0 0; opacity: 0.8; font-size: 16px;">Have you ever finally just let go of the it seems like?</p>
+            </div>
+            <button style="background: #FF9017; color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; font-size: 16px; cursor: pointer;">Shop now</button>
+        </div>
+
+    </div> 
+    <%- include('partials/footer') %>
+</div>

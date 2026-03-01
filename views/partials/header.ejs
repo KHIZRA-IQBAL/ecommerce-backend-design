@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="/css/responsive.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<header style="background: white; border-bottom: 1px solid #E3E8EE; font-family: sans-serif;">
+  
+  <div style="padding: 10px 0; height: 72px; box-sizing: border-box; display: flex; align-items: center;">
+    <div style="width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+
+      <div class="logo" style="flex-shrink: 0; display: flex; align-items: center; gap: 10px;">
+        <i class="fas fa-bars mobile-menu" style="display: none; font-size: 20px; color: #1C1C1C; cursor: pointer;"></i>
+        <a href="/" style="display: flex; align-items: center; text-decoration: none; position: relative;">
+          <img src="/logo-symbol.png" alt="Brand Icon" 
+               style="height: 38px; width: auto; display: block; object-fit: contain; transform: scale(1.4); transform-origin: center;">
+          <span class="brand-text" style="color: #8CB7F5; font-size: 26px; font-weight: 700; margin-left: 12px;">
+            Brand
+          </span>
+        </a>
+      </div>
+
+      <div class="search-container" style="flex-grow: 1; display: flex; max-width: 660px; height: 40px; border: 2px solid #0D6EFD; border-radius: 8px; overflow: hidden;">
+        <input type="text" placeholder="Search" style="flex-grow: 1; padding: 0 15px; border: none; outline: none; font-size: 15px;">
+
+        <div class="category-select" style="display: flex; align-items: center; border-left: 1px solid #DEE2E7; padding: 0 10px; background: #F3F3F3; position: relative;">
+          <select style="border: none; outline: none; background: transparent; cursor: pointer; font-size: 14px; color: #000000; font-weight: 500; appearance: none; -webkit-appearance: none; padding-right: 25px;">
+            <option>All category</option>
+            <option>Electronics</option>
+            <option>Clothes</option>
+          </select>
+          <img src="/dropdown.png" alt="arrow" style="width: 12px; position: absolute; right: 10px; pointer-events: none;">
+        </div>
+
+        <button class="search-btn" style="background: #0D6EFD; color: white; border: none; padding: 0 25px; cursor: pointer; font-weight: 500; font-size: 15px;">
+          Search
+        </button>
+      </div>
+
+      <div class="header-icons" style="display: flex; gap: 20px; color: #8B96A5; text-align: center; font-size: 12px;">
+        <a href="/profile" style="text-decoration: none; color: inherit; cursor: pointer;">
+          <img src="/user.png" alt="Profile" style="width: 20px; height: 20px; display: block; margin: 0 auto 2px;">
+          <span>Profile</span>
+        </a>
+        <a href="/messages" style="text-decoration: none; color: inherit; cursor: pointer;">
+          <img src="/msg.png" alt="Message" style="width: 20px; height: 20px; display: block; margin: 0 auto 2px;">
+          <span>Message</span>
+        </a>
+        <a href="/orders" style="text-decoration: none; color: inherit; cursor: pointer;">
+          <img src="/heart.png" alt="Orders" style="width: 20px; height: 20px; display: block; margin: 0 auto 2px;">
+          <span>Orders</span>
+        </a>
+        <a href="/cart" style="text-decoration: none; color: inherit; cursor: pointer;">
+          <img src="/cart.png" alt="Cart" style="width: 20px; height: 20px; display: block; margin: 0 auto 2px;">
+          <span>My cart</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" style="background: white; border-top: 1px solid #E3E8EE; padding: 12px 0;">
+    <div style="width: 90%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      
+      <div class="nav-links" style="display: flex; align-items: center; gap: 25px;">
+        <a href="/listing" style="display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: 500; font-size: 16px; color: #1C1C1C; text-decoration: none;">
+          <span class="material-symbols-outlined" style="font-size: 20px;">menu</span>
+          <span>All category</span>
+        </a>
+        <a href="/listing" class="nav-item" style="text-decoration: none; color: #1C1C1C; font-size: 16px;">Hot offers</a>
+        <a href="/listing" class="nav-item" style="text-decoration: none; color: #1C1C1C; font-size: 16px;">Gift boxes</a>
+        <a href="/listing" class="nav-item" style="text-decoration: none; color: #1C1C1C; font-size: 16px;">Projects</a>
+        <a href="/listing" class="nav-item" style="text-decoration: none; color: #1C1C1C; font-size: 16px;">Menu item</a>
+        <div class="nav-item" style="display: flex; align-items: center; gap: 4px; cursor: pointer; font-size: 16px; color: #1C1C1C;">
+          <span>Help</span>
+          <span class="material-symbols-outlined" style="font-size: 18px; color: #8B96A5;">expand_more</span>
+        </div>
+      </div>
+
+      <div class="lang-ship" style="display: flex; align-items: center; gap: 25px;">
+        <div style="display: flex; align-items: center; gap: 4px; cursor: pointer; font-weight: 500; font-size: 16px; color: #1C1C1C;">
+          <span>English, USD</span>
+          <span class="material-symbols-outlined" style="font-size: 18px; color: #8B96A5;">expand_more</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 4px; cursor: pointer; font-weight: 500; font-size: 16px; color: #1C1C1C;">
+          <span>Ship to</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="DE" style="width: 22px; height: 15px; object-fit: cover; border-radius: 2px;">
+          <span class="material-symbols-outlined" style="font-size: 18px; color: #8B96A5;">expand_more</span>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</header>

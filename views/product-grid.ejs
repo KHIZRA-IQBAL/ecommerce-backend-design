@@ -1,0 +1,95 @@
+<%- include('partials/header') %>
+
+<main style="background-color: #F7FAFC; padding: 20px 0; font-family: 'Inter', sans-serif;">
+  <div style="width: 90%; margin: 0 auto;">
+    
+    <nav style="margin-bottom: 20px; color: #8B96A5; font-size: 16px;">
+      Home <i class="fas fa-chevron-right" style="font-size: 12px; margin: 0 10px;"></i> 
+      Electronics <i class="fas fa-chevron-right" style="font-size: 12px; margin: 0 10px;"></i> 
+      <span style="color: #1C1C1C;">Smartphones</span>
+    </nav>
+
+    <div style="display: flex; gap: 28px;">
+      
+      <aside style="width: 240px; flex-shrink: 0;">
+        <%- include('partials/filters-sidebar-grid') %>
+      </aside>
+
+      <section style="flex-grow: 1;">
+        
+        <div style="background: white; border: 1px solid #E3E8EE; border-radius: 6px; padding: 15px 20px; margin-bottom: 20px;">
+           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <span style="font-size: 16px;"><%= products.length %> items in <strong style="font-weight: 600;">Mobile accessory</strong></span>
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <label style="display: flex; align-items: center; gap: 8px;"><input type="checkbox" checked> Verified only</label>
+                <select style="padding: 8px; border: 1px solid #E3E8EE; border-radius: 6px;"><option>Featured</option></select>
+                <div style="display: flex; border: 1px solid #E3E8EE; border-radius: 6px; overflow: hidden;">
+                    <button style="padding: 8px 12px; background: #EEEEEE; border: none; border-right: 1px solid #E3E8EE;"><i class="fas fa-th"></i></button>
+                    <button style="padding: 8px 12px; background: white; border: none;"><i class="fas fa-bars"></i></button>
+                </div>
+              </div>
+           </div>
+           
+           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+             <% ['Samsung', 'Apple', 'Huawei', 'Metallic', '8GB Ram', '4 star'].forEach(tag => { %>
+               <div style="border: 1px solid #0D6EFD; color: #505050; padding: 5px 12px; border-radius: 5px; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                 <%= tag %> <i class="fas fa-times" style="color: #8B96A5; cursor: pointer;"></i>
+               </div>
+             <% }) %>
+             <button style="color: #0D6EFD; background: none; border: none; font-weight: 500; cursor: pointer;">Clear all filter</button>
+           </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          
+          <% products.forEach(item => { %>
+            <div style="background: white; border: 1px solid #E3E8EE; border-radius: 6px; padding: 15px; position: relative;">
+                
+                <a href="/product-detail?id=<%= item._id %>" style="text-decoration: none; color: inherit;">
+                    <div style="height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-bottom: 1px solid #f8f8f8;">
+                        <img src="<%= item.image %>" style="max-width: 100%; max-height: 100%; object-fit: contain;" onerror="this.src='/tech/2.jpg'">
+                    </div>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span style="font-size: 18px; font-weight: 600; color: #1C1C1C;">$<%= item.price %></span>
+                            <button style="border: 1px solid #E3E8EE; background: white; padding: 5px 8px; border-radius: 6px; color: #0D6EFD;"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div style="color: #FF9017; font-size: 14px; margin-bottom: 10px;">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                            <span style="color: #8B96A5; margin-left: 5px;">7.5</span>
+                        </div>
+                        <h5 style="font-size: 16px; color: #505050; font-weight: 400; line-height: 1.4; margin: 0; height: 45px; overflow: hidden;">
+                            <%= item.title %>
+                        </h5>
+                    </div>
+                </a>
+
+                <form action="/add-to-cart" method="POST" style="margin-top: 10px;">
+                    <input type="hidden" name="productId" value="<%= item._id %>">
+                    <button type="submit" style="width: 100%; background: #fff; color: #0D6EFD; border: 1px solid #E3E8EE; padding: 8px; border-radius: 6px; cursor: pointer; font-weight: 500;">
+                        Add to cart
+                    </button>
+                </form>
+
+            </div>
+          <% }) %>
+
+        </div>
+        <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+            <div style="display: flex; border: 1px solid #E3E8EE; border-radius: 6px; overflow: hidden; background: white;">
+                <button style="padding: 10px 15px; border: none; border-right: 1px solid #E3E8EE; background: white;"><i class="fas fa-chevron-left"></i></button>
+                <button style="padding: 10px 15px; border: none; border-right: 1px solid #E3E8EE; background: #EEEEEE; font-weight: 600;">1</button>
+                <button style="padding: 10px 15px; border: none; border-right: 1px solid #E3E8EE; background: white;">2</button>
+                <button style="padding: 10px 15px; border: none; border-right: 1px solid #E3E8EE; background: white;">3</button>
+                <button style="padding: 10px 15px; border: none; background: white;"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
+  
+  <%- include('partials/newsletter') %>
+</main>
+
+<%- include('partials/footer') %>

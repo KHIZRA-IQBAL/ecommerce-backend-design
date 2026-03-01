@@ -1,0 +1,174 @@
+<style>
+    /* Pure CSS Dropdown Icon - No Library Needed */
+    .custom-chevron {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid #8B96A5;
+        border-bottom: 2px solid #8B96A5;
+        transform: rotate(45deg); /* Default Down */
+        transition: transform 0.3s ease;
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    /* Jab section khula ho toh icon rotate ho jaye */
+    .chevron-up {
+        transform: rotate(-135deg) !important;
+        margin-top: 5px;
+    }
+
+    .sidebar-wrapper {
+        width: 240px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .sidebar-section {
+        border-top: 1px solid #E3E8EE;
+        padding: 15px 0;
+    }
+
+    .sidebar-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        color: #1C1C1C;
+        font-size: 16px;
+    }
+
+    .sidebar-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+        color: #505050;
+        font-size: 16px;
+        line-height: 2.2;
+    }
+
+    .checkbox-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #1C1C1C;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .custom-checkbox {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #BDBDBD;
+        border-radius: 5px;
+        accent-color: #0D6EFD;
+    }
+
+    .see-all-btn {
+        color: #0D6EFD;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="sidebar-wrapper">
+
+    <div class="sidebar-section">
+        <div onclick="toggleSection('cat-list', 'cat-arrow')" class="sidebar-title">
+            <span>Category</span>
+            <div id="cat-arrow" class="custom-chevron chevron-up"></div>
+        </div>
+        <div id="cat-list" style="display: block;">
+            <ul class="sidebar-list">
+                <li>Mobile accessory</li>
+                <li>Electronics</li>
+                <li>Smartphones</li>
+                <li>Modern tech</li>
+                <li class="see-all-btn">See all</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sidebar-section">
+        <div onclick="toggleSection('brand-list', 'brand-arrow')" class="sidebar-title">
+            <span>Brands</span>
+            <div id="brand-arrow" class="custom-chevron chevron-up"></div>
+        </div>
+        <div id="brand-list" class="checkbox-group" style="display: flex;">
+            <% const brands = [
+                { name: 'Samsung', checked: true },
+                { name: 'Apple', checked: true },
+                { name: 'Huawei', checked: false },
+                { name: 'Pocco', checked: true },
+                { name: 'Lenovo', checked: false }
+            ]; %>
+            <% brands.forEach(brand => { %>
+                <label class="checkbox-item">
+                    <input type="checkbox" <%= brand.checked ? 'checked' : '' %> class="custom-checkbox">
+                    <%= brand.name %>
+                </label>
+            <% }) %>
+            <span class="see-all-btn">See all</span>
+        </div>
+    </div>
+
+    <div class="sidebar-section">
+        <div onclick="toggleSection('feat-list', 'feat-arrow')" class="sidebar-title">
+            <span>Features</span>
+            <div id="feat-arrow" class="custom-chevron chevron-up"></div>
+        </div>
+        <div id="feat-list" class="checkbox-group" style="display: flex;">
+            <% const features = [
+                { name: 'Metallic', checked: true },
+                { name: 'Plastic cover', checked: false },
+                { name: '8GB Ram', checked: false },
+                { name: 'Super power', checked: false },
+                { name: 'Large Memory', checked: false }
+            ]; %>
+            <% features.forEach(feat => { %>
+                <label class="checkbox-item">
+                    <input type="checkbox" <%= feat.checked ? 'checked' : '' %> class="custom-checkbox">
+                    <%= feat.name %>
+                </label>
+            <% }) %>
+            <span class="see-all-btn">See all</span>
+        </div>
+    </div>
+
+    <% ['Price range', 'Condition', 'Ratings', 'Manufacturer'].forEach((item, index) => { %>
+        <div class="sidebar-section">
+            <div onclick="toggleSection('extra-<%= index %>', 'extra-arrow-<%= index %>')" class="sidebar-title">
+                <span><%= item %></span>
+                <div id="extra-arrow-<%= index %>" class="custom-chevron"></div>
+            </div>
+            <div id="extra-<%= index %>" style="display: none; margin-top: 10px; color: #505050;">
+                Options for <%= item %>
+            </div>
+        </div>
+    <% }) %>
+
+</div>
+
+<script>
+    function toggleSection(contentId, arrowId) {
+        const content = document.getElementById(contentId);
+        const arrow = document.getElementById(arrowId);
+        
+        if (content.style.display === "none") {
+            // Open section
+            content.style.display = (contentId.includes('list')) ? (contentId === 'cat-list' ? 'block' : 'flex') : 'block';
+            arrow.classList.add('chevron-up');
+        } else {
+            // Close section
+            content.style.display = "none";
+            arrow.classList.remove('chevron-up');
+        }
+    }
+</script>

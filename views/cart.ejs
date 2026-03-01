@@ -1,0 +1,165 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<header style="background: #fff; border-bottom: 1px solid #E3E8EE; padding: 15px 0; font-family: 'Inter', sans-serif;">
+    <div style="max-width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+        <a href="/" style="display: flex; align-items: center; text-decoration: none;">
+          <div style="background: #0D6EFD; color: #fff; padding: 8px; border-radius: 8px; margin-right: 10px; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <span style="color: #8CB7F5; font-size: 26px; font-weight: 700;">Brand</span>
+        </a>
+        <div style="display: flex; gap: 30px;">
+            <div style="text-align: center; cursor: pointer; color: #8B96A5;">
+                <i class="fas fa-user" style="font-size: 18px;"></i>
+                <div style="font-size: 11px; margin-top: 5px;">Profile</div>
+            </div>
+            <div style="text-align: center; cursor: pointer; color: #8B96A5;">
+                <i class="fas fa-comment-dots" style="font-size: 18px;"></i>
+                <div style="font-size: 11px; margin-top: 5px;">Message</div>
+            </div>
+            <div style="text-align: center; cursor: pointer; color: #8B96A5;">
+                <i class="fas fa-heart" style="font-size: 18px;"></i>
+                <div style="font-size: 11px; margin-top: 5px;">Orders</div>
+            </div>
+            <a href="/cart" style="text-decoration: none; text-align: center; cursor: pointer; color: #0D6EFD; position: relative;">
+                <i class="fas fa-shopping-cart" style="font-size: 18px;"></i>
+                <% if (products.length > 0) { %>
+                    <span style="position: absolute; top: -10px; right: -5px; background: #FA3434; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; font-weight: bold;">
+                        <%= products.length %>
+                    </span>
+                <% } %>
+                <div style="font-size: 11px; margin-top: 5px; font-weight: 500;">My cart</div>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div style="background-color: #F7F8FA; padding: 30px 0; font-family: 'Inter', sans-serif; min-height: 100vh;">
+    <div style="max-width: 90%; margin: 0 auto;">
+        <h2 style="font-size: 24px; font-weight: 600; color: #1C1C1C; margin-bottom: 25px;">My cart (<%= products.length %>)</h2>
+
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 3;">
+                <div style="background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; padding: 20px;">
+                    <% if (products.length > 0) { %>
+                        <% products.forEach(item => { %>
+                            <div style="display: flex; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid #E3E8EE; margin-bottom: 20px;">
+                                <div style="width: 80px; height: 80px; border: 1px solid #E3E8EE; border-radius: 6px; padding: 5px; background: #fff; flex-shrink: 0;">
+                                    <img src="<%= item.image %>" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.src='/cloth/2.jpg'">
+                                </div>
+
+                                <div style="flex: 2;">
+                                    <h4 style="font-size: 16px; color: #1C1C1C; margin: 0; font-weight: 500;"><%= item.title %></h4>
+                                    <div style="color: #8B96A5; font-size: 14px; margin-top: 5px;">Category: <%= item.category %> <br> Seller: Artel Market</div>
+                                    <div style="margin-top: 15px; display: flex; gap: 8px;">
+                                        <form action="/remove-from-cart" method="POST" style="margin: 0;">
+                                            <input type="hidden" name="productId" value="<%= item._id %>">
+                                            <button type="submit" style="color: #FA3434; border: 1px solid #E3E8EE; background: #fff; padding: 7px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500;">Remove</button>
+                                        </form>
+                                        <button style="color: #0D6EFD; border: 1px solid #E3E8EE; background: #fff; padding: 7px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500;">Save for later</button>
+                                    </div>
+                                </div>
+
+                                <div style="flex: 1; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+                                    <span style="font-weight: 500; color: #1C1C1C; font-size: 16px;">$<%= item.price %></span>
+                                    <div style="border: 1px solid #E3E8EE; border-radius: 6px; padding: 8px 12px; background: #fff; font-size: 14px;">Qty: 1</div>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <div style="text-align: center; padding: 40px; color: #8B96A5;">
+                            <i class="fas fa-shopping-cart" style="font-size: 40px; margin-bottom: 10px; display: block;"></i>
+                            Your cart is empty
+                        </div>
+                    <% } %>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <a href="/listing" style="text-decoration: none; background: #0D6EFD; color: #fff; padding: 10px 20px; border-radius: 6px; display: flex; align-items: center; gap: 10px; font-weight: 500;">
+                            <i class="fas fa-arrow-left"></i> Back to shop
+                        </a>
+                        <form action="/clear-cart" method="POST" style="margin: 0;">
+                            <button type="submit" style="background: #fff; color: #0D6EFD; border: 1px solid #E3E8EE; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500;">Remove all</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex: 1;">
+                <div style="background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; padding: 24px; box-shadow: 0px 4px 10px rgba(0,0,0,0.05);">
+                    <% 
+                        let sub = 0;
+                        products.forEach(p => sub += Number(p.price));
+                        let tax = sub > 0 ? (sub * 0.05) : 0; // 5% Tax calculation
+                        let disc = sub > 200 ? 20.00 : 0; // Discount if total > 200
+                        let grandTotal = sub + tax - disc;
+                    %>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; color: #505050;"><span>Subtotal:</span> <span>$<%= sub.toFixed(2) %></span></div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 12px; color: #FA3434;"><span>Discount:</span> <span>- $<%= disc.toFixed(2) %></span></div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: #00B517;"><span>Tax (5%):</span> <span>+ $<%= tax.toFixed(2) %></span></div>
+                    <hr style="border: 0; border-top: 1px solid #E3E8EE; margin-bottom: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+                        <strong style="font-size: 16px;">Total:</strong>
+                        <strong style="font-size: 20px; color: #1C1C1C;">$<%= grandTotal.toFixed(2) %></strong>
+                    </div>
+                    <button style="width: 100%; background: #00B517; color: #fff; border: none; padding: 18px; border-radius: 8px; font-weight: 600; font-size: 18px; cursor: pointer; margin-bottom: 24px;">Checkout</button>
+                    <div style="display: flex; justify-content: center; gap: 12px;"><img src="https://img.icons8.com/color/48/visa.png" style="width: 32px;"><img src="https://img.icons8.com/color/48/mastercard.png" style="width: 28px;"><img src="https://img.icons8.com/color/48/paypal.png" style="width: 38px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 40px; margin-top: 30px; padding: 10px 0;">
+            <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; background: #E3E8EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #8B96A5;"><i class="fas fa-lock"></i></div><div><div style="font-weight: 500; font-size: 14px;">Secure payment</div><div style="font-size: 12px; color: #A9ACB0;">100% Secure Transaction</div></div></div>
+            <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; background: #E3E8EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #8B96A5;"><i class="fas fa-comment-dots"></i></div><div><div style="font-weight: 500; font-size: 14px;">Customer support</div><div style="font-size: 12px; color: #A9ACB0;">24/7 Available</div></div></div>
+            <div style="display: flex; align-items: center; gap: 12px;"><div style="width: 40px; height: 40px; background: #E3E8EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #8B96A5;"><i class="fas fa-truck"></i></div><div><div style="font-weight: 500; font-size: 14px;">Free delivery</div><div style="font-size: 12px; color: #A9ACB0;">On orders over $100</div></div></div>
+        </div>
+
+        <div style="margin-top: 30px; background: #fff; border: 1px solid #E3E8EE; border-radius: 6px; padding: 20px;">
+            <h3 style="font-size: 20px; font-weight: 600; color: #1C1C1C; margin-bottom: 20px;">Saved for later</h3>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                <% savedProducts.forEach(item => { %>
+                <div>
+                    <div style="background: #EEEEEE; border-radius: 6px; padding: 20px; text-align: center; margin-bottom: 10px;">
+                        <img src="<%= item.image %>" style="width: 100%; height: 140px; object-fit: contain;" onerror="this.src='/tech/2.jpg'">
+                    </div>
+                    <div style="font-size: 18px; font-weight: 600; color: #1C1C1C;">$<%= item.price %></div>
+                    <div style="font-size: 14px; color: #606060; margin: 5px 0 15px; line-height: 1.4; height: 40px; overflow: hidden;">
+                        <%= item.title %>
+                    </div>
+                    <form action="/add-to-cart" method="POST">
+                        <input type="hidden" name="productId" value="<%= item._id %>">
+                        <button type="submit" style="width: 100%; border: 1px solid #E3E8EE; background: #fff; color: #0D6EFD; padding: 8px 15px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-shopping-cart"></i> Move to cart
+                        </button>
+                    </form>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <div style="margin: 30px 0; background: linear-gradient(90deg, #237CFF 0%, #005ADE 100%); border-radius: 8px; padding: 25px 30px; display: flex; justify-content: space-between; align-items: center; color: #fff;">
+            <div>
+                <h3 style="margin: 0; font-size: 22px;">Super discount on more than 100 USD</h3>
+                <p style="margin: 5px 0 0; opacity: 0.8; font-size: 14px;">Special offers for our premium customers</p>
+            </div>
+            <button style="background: #FF9017; color: #fff; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 600; cursor: pointer;">Shop now</button>
+        </div>
+    </div>
+</div>
+
+<footer style="background: #fff; padding: 40px 0; border-top: 1px solid #E3E8EE; font-family: 'Inter', sans-serif;">
+    <div style="max-width: 90%; margin: 0 auto; display: flex; gap: 50px;">
+        <div style="flex: 2;">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <div style="background: #0D6EFD; color: #fff; padding: 8px; border-radius: 8px; margin-right: 10px; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-shopping-bag"></i></div>
+                <span style="color: #8CB7F5; font-size: 24px; font-weight: 700;">Brand</span>
+            </div>
+            <p style="color: #505050; font-size: 15px; line-height: 1.6;">Your one-stop shop for everything quality.</p>
+        </div>
+        <div style="flex: 1;"><h4 style="font-weight: 600; margin-bottom: 15px;">About</h4><div style="color: #8B96A5; line-height: 2; font-size: 14px;">About Us<br>Find store<br>Categories</div></div>
+        <div style="flex: 1;"><h4 style="font-weight: 600; margin-bottom: 15px;">Information</h4><div style="color: #8B96A5; line-height: 2; font-size: 14px;">Help Center<br>Refund<br>Shipping</div></div>
+        <div style="flex: 1.5;"><h4 style="font-weight: 600; margin-bottom: 15px;">Get app</h4>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" style="width: 110px; margin-bottom: 8px; display: block;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" style="width: 110px; display: block;">
+        </div>
+    </div>
+</footer>
