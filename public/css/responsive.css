@@ -1,98 +1,250 @@
 /* ==========================================================================
-   IMPROVED CART & FULL SITE RESPONSIVE STYLES
+   COMPLETE RESPONSIVE CONTROL (CENTRAL FILE)
    ========================================================================== */
 
+/* --- 1. GLOBAL RESET --- */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit !important;
+}
+
 @media (max-width: 768px) {
-    
-    /* 1. GLOBAL RESET */
-    div[style*="max-width: 90%"] { width: 95% !important; }
+    /* --- 2. HEADER & NAV (Already Perfected) --- */
+    header div[style*="height: 72px"] { height: auto !important; padding: 15px 0 !important; }
+    header div[style*="width: 90%"] { width: 95% !important; flex-wrap: wrap !important; gap: 10px !important; }
+    .brand-text { font-size: 18px !important; }
+    .mobile-menu { display: block !important; }
+    .search-container { order: 3 !important; width: 100% !important; margin-top: 8px !important; }
+    .category-select { display: none !important; }
+    .header-icons { order: 2 !important; gap: 15px !important; }
+    .header-icons span { display: none !important; }
+    .mobile-nav { overflow-x: auto !important; white-space: nowrap !important; border-bottom: 1px solid #E3E8EE !important; }
+    .lang-ship { display: none !important; }
 
-    /* 2. CART PAGE IMPROVEMENTS */
-    
-    /* Parent container stack */
-    div[style*="display: flex; gap: 20px; align-items: flex-start"] {
+    /* --- 3. UNIVERSAL SECTION STACKING --- */
+    div[style*="width: 90%"], section[style*="width: 90%"] {
+        width: 95% !important;
+        margin: 10px auto !important;
+    }
+
+    section[style*="display: flex"], 
+    div[style*="display: flex"][style*="border: 1px solid"] {
         flex-direction: column !important;
-        display: block !important;
+        height: auto !important;
     }
 
-    /* Product Section & Summary Section Full Width */
-    div[style*="flex: 3"], div[style*="flex: 1"] {
+    h2[style*="font-size: 24px"] {
+        font-size: 20px !important;
+        margin-left: 10px !important;
+    }
+
+    /* --- 4. HOME & OUTDOOR / DEALS SECTION (2 ITEMS PER ROW) --- */
+    div[style*="width: 280px"], 
+    div[style*="flex: 1"][style*="padding: 20px"] {
         width: 100% !important;
-        margin-bottom: 20px !important;
+        height: 180px !important; 
+        border-right: none !important;
+        border-bottom: 1px solid #E3E8EE !important;
     }
 
-    /* Individual Cart Item Card */
-    div[style*="display: flex; gap: 15px; padding-bottom: 20px"] {
-        flex-direction: column !important; /* Mobile par stack */
-        position: relative !important;
-        padding: 15px !important;
-        border: 1px solid #E3E8EE !important;
-        border-radius: 8px !important;
-        margin-bottom: 15px !important;
+    div[style*="display: flex"][style*="flex: 4"],
+    div[style*="display: flex"][style*="flex-grow: 1"],
+    div[style*="display: grid"] {
+        display: grid !important; 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        width: 100% !important;
+        gap: 0 !important; 
     }
 
-    /* Image Container in Cart */
-    div[style*="width: 80px; height: 80px"] {
-        width: 60px !important;
-        height: 60px !important;
+    div[style*="flex: 1"][style*="border-right"], 
+    div[style*="border: 1px solid #E3E8EE"] {
+        width: 100% !important;
+        min-height: 180px !important;
+        border-right: 1px solid #E3E8EE !important;
+        border-bottom: 1px solid #E3E8EE !important;
+        padding: 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    div[style*="flex: 1"] img {
+        max-width: 80% !important;
+        height: auto !important;
         margin-bottom: 10px !important;
     }
 
-    /* Title & Category Area */
-    div[style*="flex: 2"] {
+    /* --- 4.5. GADGETS & RECOMMENDED INTER-BANNER FIX --- */
+    section + div > img, 
+    div[style*="width: 100%"] > img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: contain !important;
+    }
+
+    /* --- 4.6. INQUIRY FORM (SEND QUOTE) SECTION FIX --- */
+    /* Container ko stack karna */
+    div[style*="background-image"][style*="linear-gradient"] {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 20px !important;
+    }
+
+    /* Left Heading Section */
+    div[style*="background-image"] > div:first-child {
+        width: 100% !important;
+        margin-bottom: 25px !important;
+        text-align: center !important;
+    }
+
+    div[style*="background-image"] h2 {
+        font-size: 24px !important;
         width: 100% !important;
     }
 
-    /* Price & Quantity - Inko ek line mein bottom par laya hoon */
-    div[style*="flex: 1; text-align: right"] {
-        flex-direction: row !important;
-        justify-content: space-between !important;
+    /* Form Container Fix */
+    div[style*="background: #FFFFFF"][style*="width: 490px"] {
+        width: 100% !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* --- 5. HIDE SIDEBARS --- */
+    aside { display: none !important; }
+
+    /* --- 6. FOOTER --- */
+    footer {
+        padding: 20px 0 0 !important;
+        margin-top: 20px !important;
+    }
+
+    footer > div[style*="display: flex"] {
+        flex-direction: column !important;
+        padding-bottom: 30px !important;
+        width: 95% !important;
+    }
+
+    footer div[style*="width: 280px"] {
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 30px !important;
+        text-align: center !important;
+    }
+
+    footer div[style*="width: 280px"] > div[style*="display: flex"],
+    footer div[style*="display: flex"][style*="gap: 12px"] {
+        justify-content: center !important;
+    }
+
+    footer div[style*="display: flex"][style*="flex-grow: 1"] {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+
+    footer div[style*="width: 120px"], 
+    footer div[style*="width: 125px"] {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    footer div[style*="background: #EFF2F4"] > div {
+        flex-direction: column !important;
         align-items: center !important;
-        width: 100% !important;
-        text-align: left !important;
-        margin-top: 15px !important;
-        padding-top: 10px !important;
-        border-top: 1px dashed #E3E8EE !important;
+        gap: 10px !important;
+        text-align: center !important;
     }
 
-    /* Buttons (Remove / Save for later) */
-    div[style*="margin-top: 15px; display: flex; gap: 8px"] {
-        justify-content: space-between !important;
-        width: 100% !important;
-    }
-    div[style*="margin-top: 15px; display: flex; gap: 8px"] button,
-    div[style*="margin-top: 15px; display: flex; gap: 8px"] form {
-        flex: 1 !important;
-    }
-    div[style*="margin-top: 15px; display: flex; gap: 8px"] button {
-        width: 100% !important;
-        padding: 10px !important;
+    /* --- 7. CART PAGE (MY CART) RESPONSIVE FIX --- */
+    
+    /* Main container flex to column */
+    div[style*="background-color: #F7F8FA"] > div[style*="max-width: 90%"] > div[style*="display: flex"] {
+        flex-direction: column !important;
+        gap: 20px !important;
     }
 
-    /* Checkout Bottom Buttons (Back to shop / Remove all) */
-    div[style*="display: flex; justify-content: space-between; margin-top: 20px"] {
+    /* Cart Items List (Left Side) and Summary (Right Side) full width */
+    div[style*="flex: 3"], div[style*="flex: 1"] {
+        width: 100% !important;
+        flex: none !important;
+    }
+
+    /* Individual Cart Item Row */
+    div[style*="display: flex"][style*="gap: 15px"][style*="border-bottom"] {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding-bottom: 25px !important;
+    }
+
+    /* Item Image Center */
+    div[style*="width: 80px"][style*="height: 80px"] {
+        width: 120px !important;
+        height: 120px !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Remove/Save Buttons Center */
+    div[style*="margin-top: 15px"][style*="display: flex"] {
+        justify-content: center !important;
+    }
+
+    /* Price and Qty stack */
+    div[style*="text-align: right"][style*="flex: 1"] {
+        text-align: center !important;
+        align-items: center !important;
+        margin-top: 10px !important;
+    }
+
+    /* Back to shop & Remove all buttons stack */
+    div[style*="justify-content: space-between"][style*="margin-top: 20px"] {
         flex-direction: column !important;
         gap: 10px !important;
     }
-    div[style*="display: flex; justify-content: space-between; margin-top: 20px"] a,
-    div[style*="display: flex; justify-content: space-between; margin-top: 20px"] button {
+    div[style*="justify-content: space-between"] a, 
+    div[style*="justify-content: space-between"] button {
         width: 100% !important;
         justify-content: center !important;
     }
 
-    /* 3. SAVED FOR LATER GRID */
-    div[style*="display: grid; grid-template-columns: repeat(4, 1fr)"] {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
+    /* Secure Payment / Delivery Icons Section */
+    div[style*="gap: 40px"][style*="margin-top: 30px"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+        align-items: flex-start !important;
     }
 
-    /* 4. FOOTER IMPROVEMENT */
-    footer div[style*="max-width: 90%; margin: 0 auto; display: flex; gap: 50px"] {
-        flex-direction: column !important;
-        gap: 25px !important;
-        text-align: center !important;
+    /* Saved for Later Grid (2 items per row) */
+    div[style*="display: grid"][style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
     }
-    footer div[style*="flex: 1"], footer div[style*="flex: 1.5"] {
-        width: 100% !important;
+
+    /* Blue Discount Banner Stack */
+    div[style*="background: linear-gradient(90deg, #237CFF 0%, #005ADE 100%)"] {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    footer div[style*="display: flex"][style*="flex-grow: 1"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    footer div[style*="width: 125px"] {
+        grid-column: span 2 !important; 
+        text-align: center !important;
     }
 }
