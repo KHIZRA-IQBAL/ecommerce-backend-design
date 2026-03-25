@@ -63,7 +63,7 @@
   </div>
   <div style="display: flex; flex-grow: 1;">
     <% products.filter(p => p.category === "Deals").forEach(function(product) { %>
-        <div style="flex: 1; padding: 20px; text-align: center; border-right: 1px solid #E3E8EE;">
+        <div onclick="window.location.href='/grid'" style="flex: 1; padding: 20px; text-align: center; border-right: 1px solid #E3E8EE; cursor: pointer;">
           <img src="<%= product.image %>" style="width: 130px; height: 130px; object-fit: contain; margin-bottom: 10px;" alt="<%= product.title %>">
           <p style="font-size: 14px; margin: 0 0 8px;"><%= product.title %></p>
           <span style="background: #FFE3E3; color: #EB001B; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
